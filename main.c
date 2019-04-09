@@ -3,14 +3,13 @@
 #include"struct.h"
 
 void input(SqList L);
-void minprice(int s,int e,SqList L);
+void minprice(int c,int m[9],int s,int e,SqList L);
 
 int main(){
-	//改变
 	int startpart;
 	int endpart;
 	int i,j,k;
-	int midpart[9];
+	int midpart[20]={-1};
 	int midcount=0;
 	int plan; 
 	SqList list;
@@ -23,23 +22,24 @@ int main(){
 	scanf("%d",&startpart);
 	printf("请按照以上设定输入您的终点（数字）：");
 	scanf("%d",&endpart);
-	printf("您是否要规定途径城市？如果是，请键入1；否则键入2。\n");
+	printf("您是否要规定途径城市？如果是，请键入1；否则键入2：");
 	scanf("%d",&i);
 	if(i==1){
-		printf("请输入您的途经城市个数：\n");
+		printf("请输入您的途经城市个数：");
 		scanf("%d",&midcount);
-		printf("请按顺序输入您的途经城市编号：\n");
+		printf("请按顺序输入您的途经城市编号：");
 		for(k=0;k<midcount;k++){
 			scanf("%d",&midpart[k]);
-		}	
+		}
+		midpart[0]=startpart;//第零个存起点，最后一个存终点 
+		midpart[midcount+1]=endpart;
 	}
 	printf("请选择您的旅行策略：(最少费用策略请键入1，最少时间策略请键入2，在规定时间内所需费用最少请键入3)\n");
     scanf("%d",&plan);
     input(list);
 	if(plan==1){//最少费用策略 
 		if(midcount==0)
-			minprice(startpart,endpart,list);
-//		else
+			minprice(midcount,midpart,startpart,endpart,list);
 	}	 
 	return 0;
 }
