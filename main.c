@@ -6,6 +6,7 @@ void input(SqList L);
 void minprice(int s,int e,SqList L);
 
 int main(){
+	//改变
 	int startpart;
 	int endpart;
 	int i,j,k;
